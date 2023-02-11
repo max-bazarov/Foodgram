@@ -13,7 +13,7 @@ SECRET_KEY = 'django-insecure-3tdm6vcy1@pyo2q(8&g)s5zl+zki^5pdrglgjih88ws=viy3vo
 
 DEBUG = True
 
-ALLOWED_HOSTS = [*]
+ALLOWED_HOSTS = ['*']
 AUTH_USER_MODEL = 'users.User'
 CSRF_TRUSTED_ORIGINS = ['localhost']
 
