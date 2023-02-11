@@ -13,7 +13,9 @@ SECRET_KEY = 'django-insecure-3tdm6vcy1@pyo2q(8&g)s5zl+zki^5pdrglgjih88ws=viy3vo
 
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [*]
+AUTH_USER_MODEL = 'users.User'
+CSRF_TRUSTED_ORIGINS = ['localhost']
 
 
 INSTALLED_APPS = [
@@ -87,6 +89,21 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ],
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAuthenticated',
+    ],
+    'DEFAULT_FILTER_BACKENDS': [
+        'rest_framework.filters.SearchFilter',
+        'django_filters.rest_framework.DjangoFilterBackend',
+    ],
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
+    'PAGE_SIZE': 6,
+}
 
 
 LANGUAGE_CODE = 'en-us'
