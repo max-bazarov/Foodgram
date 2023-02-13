@@ -1,13 +1,12 @@
+from recipes.models import Ingredient, Recipe, Tag
 from rest_framework.viewsets import ModelViewSet
 
-from recipes.models import Recipe, Tag, Ingredient
-from .serializers import RecipeSerializer, TagSerializer, IngredientSerializer
+from .serializers import IngredientSerializer, RecipeSerializer, TagSerializer
 
 
 class RecipeViewSet(ModelViewSet):
     queryset = Recipe.objects.all()
     serializer_class = RecipeSerializer
-    pagination_class
 
 
 class TagViewSet(ModelViewSet):
