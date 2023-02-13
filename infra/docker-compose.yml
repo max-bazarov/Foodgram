@@ -24,6 +24,21 @@ services:
       - db_value:/var/lib/postgresql/data/
     env_file:
       - ./.env
+  
+  backend:
+    build:
+      context: ../backend
+      dockerfile: Dockerfile
+    container_name: backend
+    volumes:
+      - static_value:/app/static
+      - media_value:/app/media
+    env_file:
+      - ./.env
+    depends_on:
+      - db
 
 volumes:
   db_value:
+  static_value:
+  media_value:
