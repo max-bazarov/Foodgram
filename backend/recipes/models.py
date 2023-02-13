@@ -13,7 +13,7 @@ class Recipe(models.Model):
     ingredients = models.ManyToManyField(
         'Ingredient',
         related_name='recipes',
-        through='ingredients.RecipeIngredient'
+        through='RecipeIngredient'
     )
     tag = models.ManyToManyField(
         'Tag',
@@ -39,12 +39,10 @@ class RecipeIngredient(models.Model):
     recipe = models.ForeignKey(
         Recipe,
         on_delete=models.CASCADE,
-        related_name='ingredients'
     )
     ingredient = models.ForeignKey(
         Ingredient,
         on_delete=models.CASCADE,
-        related_name='recipe_ingredients'
     )
 
 
