@@ -8,7 +8,7 @@ class Recipe(models.Model):
         related_name='recipes'
     )
     title = models.CharField(max_length=200)
-    description = models.TextField()
+    text = models.TextField()
     image = models.ImageField(upload_to='images/')
     ingredients = models.ManyToManyField(
         'Ingredient',
@@ -31,8 +31,7 @@ class Tag(models.Model):
 
 class Ingredient(models.Model):
     name = models.CharField(max_length=200)
-    amount = models.IntegerField()
-    unit = models.CharField(max_length=200)
+    measurement_unit = models.CharField(max_length=200)
 
 
 class RecipeIngredient(models.Model):
@@ -44,6 +43,7 @@ class RecipeIngredient(models.Model):
         Ingredient,
         on_delete=models.CASCADE,
     )
+    amout = models.IntegerField()
 
 
 class RecipeTag(models.Model):
