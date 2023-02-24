@@ -15,7 +15,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 AUTH_USER_MODEL = 'users.User'
-CSRF_TRUSTED_ORIGINS = ['localhost']
+CSRF_TRUSTED_ORIGINS = []
 
 
 INSTALLED_APPS = [
@@ -27,10 +27,13 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'rest_framework',
+    'rest_framework.authtoken',
+    'djoser',
 
     'users',
     'recipes',
     'lists',
+    'core',
 ]
 
 MIDDLEWARE = [
@@ -92,10 +95,11 @@ AUTH_PASSWORD_VALIDATORS = [
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
-        'rest_framework_simplejwt.authentication.JWTAuthentication',
+        'rest_framework.authentication.TokenAuthentication',
     ],
     'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.IsAuthenticated',
+        # 'rest_framework.permissions.IsAuthenticated',
+        'rest_framework.permissions.AllowAny',
     ],
     'DEFAULT_FILTER_BACKENDS': [
         'rest_framework.filters.SearchFilter',
@@ -104,6 +108,8 @@ REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
     'PAGE_SIZE': 6,
 }
+
+ACCOUNT_AUTHENTICATION_METHOD = 'email'
 
 
 LANGUAGE_CODE = 'en-us'
@@ -117,14 +123,23 @@ USE_L10N = True
 USE_TZ = True
 
 
-STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
+STATIC_URL = '/backend_static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'backend_static/')
 # STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static/'),)
 
-MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
+MEDIA_URL = '/backend_media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'backend_media/')
 
 EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
 EMAIL_FILE_PATH = os.path.join(BASE_DIR, 'sent_emails')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+DJOSER = {
+    'SERIALIZERS': {
+        'current_user': 'users.api.serializers.CustomUserSerializer',
+        'user': 'users.api.serializers.CustomUserSerializer',
+        'user_create': 'users.api.serializers.CustomUserCreateSerializer',
+    },
+    'HIDE_USERS': False,
+}
