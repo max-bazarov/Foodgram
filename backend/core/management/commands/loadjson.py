@@ -1,10 +1,10 @@
-from django.core.management.base import BaseCommand, CommandError
-from django.conf import settings
+import json
 import os
 
-from recipes.models import Ingredient
+from django.conf import settings
+from django.core.management.base import BaseCommand, CommandError
 
-import json
+from recipes.models import Ingredient
 
 DATA_PATH = os.path.join(settings.BASE_DIR, 'data')
 
