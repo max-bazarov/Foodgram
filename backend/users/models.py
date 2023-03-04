@@ -38,15 +38,21 @@ class UserManager(BaseUserManager):
 
 
 class User(AbstractBaseUser, PermissionsMixin):
-    email = models.EmailField(('email address'), unique=True)
+    email = models.EmailField(('email address'), unique=True, max_length=255)
     username = models.CharField(
         ('username'),
-        max_length=255,
+        max_length=151,
         unique=True,
-        validators=[validate_username]
+        validators=[validate_username],
     )
-    first_name = models.CharField(('first name'), max_length=30,)
-    last_name = models.CharField(('last name'), max_length=30,)
+    first_name = models.CharField(
+        ('first name'),
+        max_length=151,
+    )
+    last_name = models.CharField(
+        ('last name'),
+        max_length=151,
+    )
 
     is_active = models.BooleanField(('active'), default=True)
     is_staff = models.BooleanField(('staff status'), default=False)
@@ -60,18 +66,18 @@ class User(AbstractBaseUser, PermissionsMixin):
         return f'{self.first_name} {self.last_name}'
 
     class Meta:
-        verbose_name = ('user')
-        verbose_name_plural = ('users')
+        verbose_name = 'user'
+        verbose_name_plural = 'users'
 
 
 class Follow(models.Model):
-    follower = models.ForeignKey(
+    author = models.ForeignKey(
         User,
         on_delete=models.CASCADE,
-        related_name='followers',
+        related_name='subscribers',
     )
-    followed = models.ForeignKey(
+    subscriber = models.ForeignKey(
         User,
         on_delete=models.CASCADE,
-        related_name='followed'
+        related_name='subscribed_on',
     )
