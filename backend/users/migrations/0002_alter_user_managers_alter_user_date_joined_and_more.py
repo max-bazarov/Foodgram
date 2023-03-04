@@ -22,7 +22,9 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name="user",
             name="date_joined",
-            field=models.DateTimeField(auto_now_add=True, verbose_name="date joined"),
+            field=models.DateTimeField(
+                auto_now_add=True, verbose_name="date joined"
+            ),
         ),
         migrations.AlterField(
             model_name="user",
@@ -44,7 +46,9 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name="user",
             name="is_staff",
-            field=models.BooleanField(default=False, verbose_name="staff status"),
+            field=models.BooleanField(
+                default=False, verbose_name="staff status"
+            ),
         ),
         migrations.AlterField(
             model_name="user",
