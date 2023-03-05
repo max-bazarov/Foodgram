@@ -3,7 +3,7 @@ name: Backend workflow
 on: [push]
 
 jobs:
-  tests:
+  flake8:
     runs-on: ubuntu-latest
 
     steps:
