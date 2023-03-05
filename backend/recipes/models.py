@@ -5,9 +5,19 @@ from core.validators import validate_hex_color
 
 
 class Tag(models.Model):
+    class Color(models.TextChoices):
+        BLUE = '#42AAFF'
+        RED = '#FF7777'
+        GREEN = '#78AD78'
+
     name = models.CharField(max_length=200)
     slug = models.SlugField(max_length=200, unique=True)
-    color = models.CharField(max_length=200, validators=[validate_hex_color])
+    color = models.CharField(
+        max_length=200,
+        validators=[validate_hex_color],
+        choices=Color.choices,
+        default=Color.BLUE,
+    )
 
     def __str__(self):
         return self.name
