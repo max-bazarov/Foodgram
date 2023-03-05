@@ -1,4 +1,5 @@
 from django.db.models import F
+from django.shortcuts import get_object_or_404
 from drf_extra_fields.fields import Base64ImageField
 from rest_framework import serializers
 
@@ -105,14 +106,11 @@ class RecipeCreateSerializer(serializers.ModelSerializer):
 
     def create_ingredients(self, ingredients, recipe):
         ingredients_list = []
-        for inredient in ingredients:
-            current_ingredient = Ingredient.objects.get_object_or_404(
-                id=inredient.get('id')
-            )
+        for ingredient in ingredients:
             ingredients_list.append(
                 RecipeIngredient(
-                    ingredient=current_ingredient,
-                    amount=inredient.get('amount'),
+                    ingredient=ingredient.get('id'),
+                    amount=ingredient.get('amount'),
                     recipe=recipe,
                 )
             )

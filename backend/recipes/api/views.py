@@ -83,7 +83,7 @@ class RecipeViewSet(ModelViewSet):
             return self._delete_object(Cart, request.user, pk)
         return None
 
-    def _prepare_list(ingredients):
+    def _prepare_list(self, ingredients):
         ingredients_list = ''
         for ingredient in ingredients:
             ingredients_list += (

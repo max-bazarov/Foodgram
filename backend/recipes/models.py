@@ -47,7 +47,7 @@ class RecipeIngredient(models.Model):
         Ingredient, on_delete=models.CASCADE, related_name='recipe'
     )
     amount = models.DecimalField(
-        max_digits=5,
+        max_digits=10,
         decimal_places=2,
         validators=[MinValueValidator(0), MaxValueValidator(10000)],
     )
