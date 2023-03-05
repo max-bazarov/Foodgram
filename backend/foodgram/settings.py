@@ -13,7 +13,7 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 
 DEBUG = False
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['130.193.38.80', 'digital-foodgram.sytes.net', 'localhost']
 AUTH_USER_MODEL = 'users.User'
 CSRF_TRUSTED_ORIGINS = []
 
