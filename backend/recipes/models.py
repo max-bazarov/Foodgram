@@ -31,7 +31,9 @@ class Recipe(models.Model):
         Ingredient, through='RecipeIngredient', related_name='recipes'
     )
     tags = models.ManyToManyField(Tag, related_name='recipes')
-    cooking_time = models.IntegerField(validators=[MinValueValidator(1)])
+    cooking_time = models.PositiveSmallIntegerField(
+        validators=[MinValueValidator(1)]
+    )
 
     class Meta:
         ordering = ['-id']
