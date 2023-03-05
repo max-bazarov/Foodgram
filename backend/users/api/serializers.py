@@ -23,14 +23,12 @@ class CustomUserSerializer(UserSerializer):
 
     def get_is_subscribed(self, obj):
         request = self.context.get('request')
-        if (
+        return (
             not request.user.is_anonymous
             and Follow.objects.filter(
                 author=obj, subscriber=request.user
             ).exists()
-        ):
-            return True
-        return False
+        )
 
     def validate_username(self, username):
         return validate_username(username)
