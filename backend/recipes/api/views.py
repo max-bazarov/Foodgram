@@ -84,15 +84,15 @@ class RecipeViewSet(ModelViewSet):
         return None
 
     def _prepare_list(ingredients):
-        list = ''
+        ingredients_list = ''
         for ingredient in ingredients:
-            list += (
+            ingredients_list += (
                 f"{ingredient['ingredient__name']} "
                 f"{ingredient['amount']} "
                 f"{ingredient['ingredient__measurement_unit']}"
             )
         file = 'food_list.txt'
-        response = HttpResponse(list, content_type='text/plain')
+        response = HttpResponse(ingredients_list, content_type='text/plain')
         response['Content-Disposition'] = f'attachment; filename="{file}.txt"'
         return response
 
