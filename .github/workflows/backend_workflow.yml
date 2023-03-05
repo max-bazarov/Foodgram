@@ -58,7 +58,6 @@ jobs:
           script: |
             sudo docker pull ${{ secrets.DOCKER_USERNAME }}/foodgram
             sudo docker stop $(sudo docker ps -a -q)
-            cd foodgram-project-react/infra/
             sudo docker-compose stop
             sudo docker-compose rm backend
             touch .env
