@@ -87,7 +87,7 @@ class RecipeViewSet(ModelViewSet):
         ingredients_list = ''
         for ingredient in ingredients:
             ingredients_list += (
-                f"{ingredient['ingredient__name']} "
+                f"\n{ingredient['ingredient__name']} "
                 f"{ingredient['amount']} "
                 f"{ingredient['ingredient__measurement_unit']}"
             )
