@@ -7,6 +7,7 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 
 from core.api.pagination import LimitPageNumberPagination
+from core.api.permissions import AuthorOrReadOnly
 from users.models import Follow
 
 from .serializers import CustomUserSerializer, FollowSerializer
@@ -17,6 +18,7 @@ User = get_user_model()
 class UserViewSet(UserViewSet):
     serializer_class = CustomUserSerializer
     pagination_class = LimitPageNumberPagination
+    permission_classes = (AuthorOrReadOnly,)
 
     @action(
         methods=['post'], detail=True, permission_classes=[IsAuthenticated]
